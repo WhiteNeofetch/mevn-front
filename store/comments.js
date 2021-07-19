@@ -2,7 +2,7 @@ import crudStore from "./generic";
 
 export default {
   ...crudStore({
-    url:'orders',
-    name:'Orders',
+    url:'comments',
+    name:'Comments',
   }),
 }

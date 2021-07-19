@@ -53,7 +53,7 @@ export default {
 </script>
 
 
-<style >
+<style>
 .product-list {
   display: flex;
 }

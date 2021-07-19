@@ -18,12 +18,12 @@ export default {
   }),
   async mounted() {
     await this.fetchCategories();
-  
+     await this.fetchProducts();
   },
   methods: {
     ...mapActions({
       fetchCategories: "categories/fetchAll",
-      fetchCategories: "products/fetchAll",
+      fetchProducts: "products/fetchAll",
     }),
   },
   computed: {
