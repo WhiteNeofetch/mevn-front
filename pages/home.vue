@@ -1,39 +1,60 @@
 <template>
-    <div>
-        
+  <div class="home">
+    <div class="product-list">
+      <ProductCard
+        v-for="(product, key) in products"
+        :key="key"
+        :title="product.title"
+        :price="product.price"
+        :image="product.image"
+        :_id="product._id"
+      />
     </div>
+  </div>
 </template>
 
-
 <script>
-import { mapGetters, mapActions } from "vuex";
-import MevnHeader from "../components/layouts/Header.vue";
+import { mapGetters, mapActions, mapMutations } from "vuex";
+import ProductCard from "../components/ProductCard";
+
 export default {
-  name: "App",
+  name: "index",
   components: {
-    MevnHeader,
+    ProductCard,
   },
-    data:()=>({
-   
-  }),
   async mounted() {
-    await this.fetchCategories();
-     await this.fetchProducts();
-  },
-  methods: {
-    ...mapActions({
-      fetchCategories: "categories/fetchAll",
-      fetchProducts: "products/fetchAll",
-    }),
+    await this.fetchProducts();
+    console.log(this.products)
+    // let image = this.products[3].image
+
+    // let reader = new FileReader();
+    // reader.addEventListener("loadend", function () {
+    //   // reader.result contains the contents of blob as a typed array
+    // });
+    // reader.readAsArrayBuffer(image);
+    
   },
   computed: {
     ...mapGetters({
-      categories: "categories/items",
-       products: "products/items",
+         products: "products/items",
+      // cartItems: "cartItems",
     }),
+    // cartItemsIds: ({ cartItems }) => cartItems.map(({ _id }) => _id),
+  },
+  methods: {
+    ...mapActions({
+       fetchProducts: "products/fetchAll",
+    }),
+    // ...mapMutations({
+    //   addToCart: "addToCart",
+    // }),
   },
 };
 </script>
 
-<style lang="scss">
+
+<style>
+.product-list {
+  display: flex;
+}
 </style>
